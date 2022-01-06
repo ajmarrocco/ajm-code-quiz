@@ -4,9 +4,15 @@ var count = 75;
 // It calls on the ids in the HTML file
 var countEl = document.querySelector('#count');
 var timerEl = document.querySelector('#timer');
+var beginningEl = document.querySelector('#beginning');
+var instructionsEl = document.querySelector('#instructions');
 
-//creates the timer function
+//creates the timer function and removes beginning title and instructions
 var setTimer = function(){
+    //removes beginning title
+    beginningEl.remove();
+    //removes instructions
+    instructionsEl.remove();
     //creates the countdown function which decreases count by one and reassigns count to that value
     var countdown = function(){
         console.log(count);
