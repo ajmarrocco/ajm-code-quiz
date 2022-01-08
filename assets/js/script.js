@@ -1,5 +1,6 @@
 // sets variables
 var count = 75;
+var countSubtract = 15;
 
 // It calls on the ids in the HTML file
 var main = document.querySelector('#main');
@@ -31,6 +32,29 @@ var scoreMessageEl = document.createElement("p");
 var initialsLabelEl = document.createElement("label");
 var initialsInputEl = document.createElement("input");
 var submitScoreEl = document.createElement("button");
+
+//subtracts 15
+var penalty = function(){ 
+    this.count -= countSubtract;
+    console.log(count);
+}
+
+// const questions = [
+//     {
+//     questionText:"what time is it",
+//     answers:[insert answers here],
+//     correctAnswer: one if the ones from the array answers above
+// },
+// {//question 2},
+// {/question 3}
+// ]
+
+// selectQUestion function which will loop throught the array of questions and display queestions[i]
+
+// on click if the question was answered incorrectly wrong run penalyty 
+// increase the current question index to display the next question
+
+// game over 
 
 // removes previous question and answers when going to new question
 var removing = function(){
@@ -67,11 +91,41 @@ var appendingAnswers = function(){
 
 // saves the score
 var savingScore = function(){
+        //sets button 1 click event
+        buttonOneEl.removeEventListener("click", function(){
+            savingScore();
+            main.appendChild(confirmEl);
+            confirmEl.textContent = "Wrong!";
+            penalty();
+        });
+    
+        //sets button 2 click event
+        buttonTwoEl.removeEventListener("click", function(){
+            savingScore();
+            main.appendChild(confirmEl);
+            confirmEl.textContent = "Wrong!";
+            penalty();
+        });
+    
+        //sets button 3 click event
+        buttonThreeEl.removeEventListener("click", function(){
+            savingScore();
+            main.appendChild(confirmEl);
+            confirmEl.textContent = "Wrong!";
+            penalty();
+        });
+    
+        //sets button 4 click event 
+        buttonFourEl.removeEventListener("click", function(){
+            savingScore();
+            main.appendChild(confirmEl);
+            confirmEl.textContent = "Correct!";
+        });
     removing();
     main.appendChild(scoreMessageEl);
     scoreMessageEl.textContent = "Your final score is " + count + ".";
     // stops timer
-    clearInterval(myTimer);
+    clearInterval(setTimer);
     main.appendChild(initialsLabelEl);
     initialsLabelEl.textContent = "Enter Initials: ";
     main.appendChild(initialsInputEl);
@@ -81,6 +135,39 @@ var savingScore = function(){
 
 //fifth question function
 var fifthQuestion = function(){
+    buttonOneEl.removeEventListener("click", function(){
+
+        fifthQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+
+    buttonTwoEl.removeEventListener("click", function(){
+        removing();
+        fifthQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+
+
+    buttonThreeEl.removeEventListener("click", function(){
+        removing();
+        fifthQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Correct!";
+    });
+
+
+    buttonFourEl.removeEventListener("click", function(){
+        removing();
+        fifthQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+    
     //append question to the main html element
     appendingQuestions();
 
@@ -100,6 +187,7 @@ var fifthQuestion = function(){
         savingScore();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
     //sets button 2 click event
@@ -107,6 +195,7 @@ var fifthQuestion = function(){
         savingScore();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
     //sets button 3 click event
@@ -114,6 +203,7 @@ var fifthQuestion = function(){
         savingScore();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
     //sets button 4 click event 
@@ -124,8 +214,39 @@ var fifthQuestion = function(){
     });
 }
 
-
 var fourthQuestion = function(){
+    buttonOneEl.removeEventListener("click", function(){
+        removing();
+        fourthQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+
+    buttonTwoEl.removeEventListener("click", function(){
+        removing();
+        fourthQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+
+
+    buttonThreeEl.removeEventListener("click", function(){
+        removing();
+        fourthQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+
+
+    buttonFourEl.removeEventListener("click", function(){
+        removing();
+        fourthQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Correct!";
+    });
     //append question to the main html element
     appendingQuestions();
 
@@ -146,6 +267,7 @@ var fourthQuestion = function(){
         fifthQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
     buttonTwoEl.addEventListener("click", function(){
@@ -153,6 +275,7 @@ var fourthQuestion = function(){
         fifthQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
 
@@ -169,11 +292,45 @@ var fourthQuestion = function(){
         fifthQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 }
 
 
 var thirdQuestion = function(){
+    buttonOneEl.removeEventListener("click", function(){
+        removing();
+        thirdQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+
+    buttonTwoEl.removeEventListener("click", function(){
+        removing();
+        thirdQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+
+
+    buttonThreeEl.removeEventListener("click", function(){
+        removing();
+        thirdQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Correct!";
+    });
+
+
+    buttonFourEl.removeEventListener("click", function(){
+        removing();
+        thirdQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+    
     //append question to the main html element
     appendingQuestions();
 
@@ -194,6 +351,7 @@ var thirdQuestion = function(){
         fourthQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
     buttonTwoEl.addEventListener("click", function(){
@@ -201,6 +359,7 @@ var thirdQuestion = function(){
         fourthQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
 
@@ -209,6 +368,7 @@ var thirdQuestion = function(){
         fourthQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
 
@@ -221,7 +381,40 @@ var thirdQuestion = function(){
 }
 
 var secondQuestion = function(){
-    //append question to the main html element
+    // //append question to the main html element
+        buttonOneEl.removeEventListener("click", function(){
+        removing();
+        secondQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+        });
+
+    buttonTwoEl.removeEventListener("click", function(){
+        removing();
+        secondQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+
+
+    buttonThreeEl.removeEventListener("click", function(){
+        removing();
+        secondQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Correct!";
+    });
+
+
+    buttonFourEl.removeEventListener("click", function(){
+        removing();
+        secondQuestion();
+        main.appendChild(confirmEl);
+        confirmEl.textContent = "Wrong!";
+        penalty();
+    });
+
     appendingQuestions();
 
     questionEl.textContent = "The condition in an if/else statement is enclosed with ______________.";
@@ -241,6 +434,7 @@ var secondQuestion = function(){
         thirdQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
     buttonTwoEl.addEventListener("click", function(){
@@ -248,6 +442,7 @@ var secondQuestion = function(){
         thirdQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
 
@@ -264,6 +459,7 @@ var secondQuestion = function(){
         thirdQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 }
 
@@ -288,13 +484,23 @@ var firstQuestion = function(){
         secondQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
+
+    // buttonOneEl.removeEventListener("click", function(){
+    //     removing();
+    //     secondQuestion();
+    //     main.appendChild(confirmEl);
+    //     confirmEl.textContent = "Wrong!";
+    //     penalty();
+    // });
 
     buttonTwoEl.addEventListener("click", function(){
         removing();
         secondQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 
 
@@ -311,8 +517,11 @@ var firstQuestion = function(){
         secondQuestion();
         main.appendChild(confirmEl);
         confirmEl.textContent = "Wrong!";
+        penalty();
     });
 }
+
+
 
 //creates the timer function and removes beginning title and instructions
 var setTimer = function(){
@@ -326,11 +535,11 @@ var setTimer = function(){
     firstQuestion();
     //creates the countdown function which decreases count by one and reassigns count to that value
     var countdown = function(){
-        console.log(count);
+        // console.log(count);
         countEl.textContent = count;
         count--;
         //stops the timer when it reaches zero and shows alert message
-        if(count === 0){
+        if(count < 0){
             clearInterval(myTimer);     
             savingScore();
         } 
