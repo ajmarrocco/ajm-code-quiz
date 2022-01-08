@@ -9,6 +9,51 @@ var buttonEl = document.querySelector('#btn');
 var beginningEl = document.querySelector('#beginning');
 var instructionsEl = document.querySelector('#instructions');
 
+var questions = [
+    {
+        question:"Commonly used data types DO Not Include:",
+        answer1:"strings",
+        answer2:"booleans",
+        answer3:"alerts",
+        answer4:"numbers",
+        correct:"alerts"
+    },
+    {
+        question:"The condition in an if/else statement is enclosed with ______________.",
+        answer1:"quotes",
+        answer2:"curly brackets",
+        answer3:"parenthesis",
+        answer4:"square brackets",
+        correct:"parethesis"
+    },
+    {
+        question:"Arrays in JavaScript can be used to store ______________.",
+        answer1:"numbers and strings",
+        answer2:"other arrays",
+        answer3:"booleans",
+        answer4:"all of the above",
+        correct:"all of the above"
+    },
+    {
+        question:"String values must be enclosed within ______________ when being assigned to variables.",
+        answer1:"commas",
+        answer2:"curly brackets",
+        answer3:"quotes",
+        answer4:"parenthesis",
+        correct:"quotes"
+    },
+    {
+        question:"A very useful tool used during development and debugging for printing content to the debugger is: ",
+        answer1:"JavaScript",
+        answer2:"terminal/bash",
+        answer3:"for loops",
+        answer4:"console.log",
+        correct:"console.log"
+    }
+];
+
+console.log(questions[0].question);
+
 //tells user the answer is right or wrong
 var confirmEl = document.createElement("div");
 //divs for questions
@@ -36,8 +81,79 @@ var submitScoreEl = document.createElement("button");
 //subtracts 15
 var penalty = function(){ 
     this.count -= countSubtract;
-    console.log(count);
+    // console.log(count);
 }
+
+var selectQuestion = function(){
+    main.appendChild(divEl);
+    divEl.appendChild(questionEl);
+    for (let i = 0; i < questions.length; i++){
+        console.log(i);
+        // debugger;
+        
+        questionEl.textContent = questions[i].question;
+
+        questionEl.appendChild(answerOneEl);
+        answerOneEl.appendChild(buttonOneEl);      
+        questionEl.appendChild(answerTwoEl);
+        answerTwoEl.appendChild(buttonTwoEl);
+        questionEl.appendChild(answerThreeEl);
+        answerThreeEl.appendChild(buttonThreeEl);      
+        questionEl.appendChild(answerFourEl);
+        answerFourEl.appendChild(buttonFourEl);
+
+        buttonOneEl.textContent = questions[i].answer1;
+        buttonTwoEl.textContent = questions[i].answer2;
+        buttonThreeEl.textContent = questions[i].answer3;
+        buttonFourEl.textContent = questions[i].answer4;
+
+        buttonOneEl.addEventListener("click", function(){        
+            if (questions[i].answer1 === questions[i].correct){
+                main.appendChild(confirmEl);
+                confirmEl.textContent = "Correct!";
+                penalty();
+            } else{
+                main.appendChild(confirmEl);
+                confirmEl.textContent = "Wrong!";
+                penalty();
+            }
+        });
+        buttonTwoEl.addEventListener("click", function(){        
+            if (questions[i].answer2 === questions[i].correct){
+                main.appendChild(confirmEl);
+                confirmEl.textContent = "Correct!";
+                penalty();
+            } else{
+                main.appendChild(confirmEl);
+                confirmEl.textContent = "Wrong!";
+                penalty();
+            }
+        });
+        buttonThreeEl.addEventListener("click", function(){        
+            if (questions[i].answer3 === questions[i].correct){
+                main.appendChild(confirmEl);
+                confirmEl.textContent = "Correct!";
+                penalty();
+            } else{
+                main.appendChild(confirmEl);
+                confirmEl.textContent = "Wrong!";
+                penalty();
+            }
+        });
+        buttonFourEl.addEventListener("click", function(){        
+            if (questions[i].answer4 === questions[i].correct){
+                main.appendChild(confirmEl);
+                confirmEl.textContent = "Correct!";
+                penalty();
+            } else{
+                main.appendChild(confirmEl);
+                confirmEl.textContent = "Wrong!";
+                penalty();
+            }
+        });
+    }
+}
+
 
 // const questions = [
 //     {
@@ -91,41 +207,41 @@ var appendingAnswers = function(){
 
 // saves the score
 var savingScore = function(){
-        //sets button 1 click event
-        buttonOneEl.removeEventListener("click", function(){
-            savingScore();
-            main.appendChild(confirmEl);
-            confirmEl.textContent = "Wrong!";
-            penalty();
-        });
+    //     //sets button 1 click event
+    //     buttonOneEl.removeEventListener("click", function(){
+    //         savingScore();
+    //         main.appendChild(confirmEl);
+    //         confirmEl.textContent = "Wrong!";
+    //         penalty();
+    //     });
     
-        //sets button 2 click event
-        buttonTwoEl.removeEventListener("click", function(){
-            savingScore();
-            main.appendChild(confirmEl);
-            confirmEl.textContent = "Wrong!";
-            penalty();
-        });
+    //     //sets button 2 click event
+    //     buttonTwoEl.removeEventListener("click", function(){
+    //         savingScore();
+    //         main.appendChild(confirmEl);
+    //         confirmEl.textContent = "Wrong!";
+    //         penalty();
+    //     });
     
-        //sets button 3 click event
-        buttonThreeEl.removeEventListener("click", function(){
-            savingScore();
-            main.appendChild(confirmEl);
-            confirmEl.textContent = "Wrong!";
-            penalty();
-        });
+    //     //sets button 3 click event
+    //     buttonThreeEl.removeEventListener("click", function(){
+    //         savingScore();
+    //         main.appendChild(confirmEl);
+    //         confirmEl.textContent = "Wrong!";
+    //         penalty();
+    //     });
     
-        //sets button 4 click event 
-        buttonFourEl.removeEventListener("click", function(){
-            savingScore();
-            main.appendChild(confirmEl);
-            confirmEl.textContent = "Correct!";
-        });
-    removing();
-    main.appendChild(scoreMessageEl);
-    scoreMessageEl.textContent = "Your final score is " + count + ".";
-    // stops timer
-    clearInterval(setTimer);
+    //     //sets button 4 click event 
+    //     buttonFourEl.removeEventListener("click", function(){
+    //         savingScore();
+    //         main.appendChild(confirmEl);
+    //         confirmEl.textContent = "Correct!";
+    //     });
+    // removing();
+    // main.appendChild(scoreMessageEl);
+    // scoreMessageEl.textContent = "Your final score is " + count + ".";
+    // // stops timer
+    // clearInterval(setTimer);
     main.appendChild(initialsLabelEl);
     initialsLabelEl.textContent = "Enter Initials: ";
     main.appendChild(initialsInputEl);
@@ -133,393 +249,393 @@ var savingScore = function(){
     submitScoreEl.textContent = "Submit";
 }
 
-//fifth question function
-var fifthQuestion = function(){
-    buttonOneEl.removeEventListener("click", function(){
+// //fifth question function
+// var fifthQuestion = function(){
+//     buttonOneEl.removeEventListener("click", function(){
 
-        fifthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//         fifthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
-    buttonTwoEl.removeEventListener("click", function(){
-        removing();
-        fifthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
-
-
-    buttonThreeEl.removeEventListener("click", function(){
-        removing();
-        fifthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Correct!";
-    });
+//     buttonTwoEl.removeEventListener("click", function(){
+//         removing();
+//         fifthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
 
-    buttonFourEl.removeEventListener("click", function(){
-        removing();
-        fifthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     buttonThreeEl.removeEventListener("click", function(){
+//         removing();
+//         fifthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Correct!";
+//     });
+
+
+//     buttonFourEl.removeEventListener("click", function(){
+//         removing();
+//         fifthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
     
-    //append question to the main html element
-    appendingQuestions();
+//     //append question to the main html element
+//     appendingQuestions();
 
-    questionEl.textContent = "A very useful tool used during development and debugging for printing content to the debugger is: ";
+//     questionEl.textContent = "A very useful tool used during development and debugging for printing content to the debugger is: ";
     
-    //append answers to the ol question element
-    appendingAnswers();
+//     //append answers to the ol question element
+//     appendingAnswers();
 
-    //creates text content for answers
-    buttonOneEl.textContent = "JavaScript";
-    buttonTwoEl.textContent = "terminal/bash";
-    buttonThreeEl.textContent = "for loops";
-    buttonFourEl.textContent = "console.log";
+//     //creates text content for answers
+//     buttonOneEl.textContent = "JavaScript";
+//     buttonTwoEl.textContent = "terminal/bash";
+//     buttonThreeEl.textContent = "for loops";
+//     buttonFourEl.textContent = "console.log";
 
-    //sets button 1 click event
-    buttonOneEl.addEventListener("click", function(){
-        savingScore();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     //sets button 1 click event
+//     buttonOneEl.addEventListener("click", function(){
+//         savingScore();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
-    //sets button 2 click event
-    buttonTwoEl.addEventListener("click", function(){
-        savingScore();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     //sets button 2 click event
+//     buttonTwoEl.addEventListener("click", function(){
+//         savingScore();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
-    //sets button 3 click event
-    buttonThreeEl.addEventListener("click", function(){
-        savingScore();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     //sets button 3 click event
+//     buttonThreeEl.addEventListener("click", function(){
+//         savingScore();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
-    //sets button 4 click event 
-    buttonFourEl.addEventListener("click", function(){
-        savingScore();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Correct!";
-    });
-}
+//     //sets button 4 click event 
+//     buttonFourEl.addEventListener("click", function(){
+//         savingScore();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Correct!";
+//     });
+// }
 
-var fourthQuestion = function(){
-    buttonOneEl.removeEventListener("click", function(){
-        removing();
-        fourthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+// var fourthQuestion = function(){
+//     buttonOneEl.removeEventListener("click", function(){
+//         removing();
+//         fourthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
-    buttonTwoEl.removeEventListener("click", function(){
-        removing();
-        fourthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
-
-
-    buttonThreeEl.removeEventListener("click", function(){
-        removing();
-        fourthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     buttonTwoEl.removeEventListener("click", function(){
+//         removing();
+//         fourthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
 
-    buttonFourEl.removeEventListener("click", function(){
-        removing();
-        fourthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Correct!";
-    });
-    //append question to the main html element
-    appendingQuestions();
+//     buttonThreeEl.removeEventListener("click", function(){
+//         removing();
+//         fourthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
-    questionEl.textContent = "String values must be enclosed within ______________ when being assigned to variables.";
+
+//     buttonFourEl.removeEventListener("click", function(){
+//         removing();
+//         fourthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Correct!";
+//     });
+//     //append question to the main html element
+//     appendingQuestions();
+
+//     questionEl.textContent = "String values must be enclosed within ______________ when being assigned to variables.";
     
-    //append answers to the ol question element
-    appendingAnswers();
-    //creates text content for questions
+//     //append answers to the ol question element
+//     appendingAnswers();
+//     //creates text content for questions
 
-    //creates text content for answers
-    buttonOneEl.textContent = "commas";
-    buttonTwoEl.textContent = "curly brackets";
-    buttonThreeEl.textContent = "quotes";
-    buttonFourEl.textContent = "parenthesis";
+//     //creates text content for answers
+//     buttonOneEl.textContent = "commas";
+//     buttonTwoEl.textContent = "curly brackets";
+//     buttonThreeEl.textContent = "quotes";
+//     buttonFourEl.textContent = "parenthesis";
 
-    buttonOneEl.addEventListener("click", function(){
+//     buttonOneEl.addEventListener("click", function(){
 
-        fifthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//         fifthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
-    buttonTwoEl.addEventListener("click", function(){
-        removing();
-        fifthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
-
-
-    buttonThreeEl.addEventListener("click", function(){
-        removing();
-        fifthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Correct!";
-    });
+//     buttonTwoEl.addEventListener("click", function(){
+//         removing();
+//         fifthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
 
-    buttonFourEl.addEventListener("click", function(){
-        removing();
-        fifthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
-}
+//     buttonThreeEl.addEventListener("click", function(){
+//         removing();
+//         fifthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Correct!";
+//     });
 
 
-var thirdQuestion = function(){
-    buttonOneEl.removeEventListener("click", function(){
-        removing();
-        thirdQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
-
-    buttonTwoEl.removeEventListener("click", function(){
-        removing();
-        thirdQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     buttonFourEl.addEventListener("click", function(){
+//         removing();
+//         fifthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
+// }
 
 
-    buttonThreeEl.removeEventListener("click", function(){
-        removing();
-        thirdQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Correct!";
-    });
+// var thirdQuestion = function(){
+//     buttonOneEl.removeEventListener("click", function(){
+//         removing();
+//         thirdQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
+
+//     buttonTwoEl.removeEventListener("click", function(){
+//         removing();
+//         thirdQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
 
-    buttonFourEl.removeEventListener("click", function(){
-        removing();
-        thirdQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     buttonThreeEl.removeEventListener("click", function(){
+//         removing();
+//         thirdQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Correct!";
+//     });
+
+
+//     buttonFourEl.removeEventListener("click", function(){
+//         removing();
+//         thirdQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
     
-    //append question to the main html element
-    appendingQuestions();
+//     //append question to the main html element
+//     appendingQuestions();
 
-    questionEl.textContent = "Arrays in JavaScript can be used to store ______________.";
+//     questionEl.textContent = "Arrays in JavaScript can be used to store ______________.";
     
-    //append answers to the ol question element
-    appendingAnswers();
-    //creates text content for questions
+//     //append answers to the ol question element
+//     appendingAnswers();
+//     //creates text content for questions
 
-    //creates text content for answers
-    buttonOneEl.textContent = "numbers and strings";
-    buttonTwoEl.textContent = "other arrays";
-    buttonThreeEl.textContent = "booleans";
-    buttonFourEl.textContent = "all of the above";
+//     //creates text content for answers
+//     buttonOneEl.textContent = "numbers and strings";
+//     buttonTwoEl.textContent = "other arrays";
+//     buttonThreeEl.textContent = "booleans";
+//     buttonFourEl.textContent = "all of the above";
 
-    buttonOneEl.addEventListener("click", function(){
-        removing();
-        fourthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     buttonOneEl.addEventListener("click", function(){
+//         removing();
+//         fourthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
-    buttonTwoEl.addEventListener("click", function(){
-        removing();
-        fourthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
-
-
-    buttonThreeEl.addEventListener("click", function(){
-        removing();
-        fourthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     buttonTwoEl.addEventListener("click", function(){
+//         removing();
+//         fourthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
 
-    buttonFourEl.addEventListener("click", function(){
-        removing();
-        fourthQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Correct!";
-    });
-}
-
-var secondQuestion = function(){
-    // //append question to the main html element
-        buttonOneEl.removeEventListener("click", function(){
-        removing();
-        secondQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-        });
-
-    buttonTwoEl.removeEventListener("click", function(){
-        removing();
-        secondQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     buttonThreeEl.addEventListener("click", function(){
+//         removing();
+//         fourthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
 
-    buttonThreeEl.removeEventListener("click", function(){
-        removing();
-        secondQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Correct!";
-    });
+//     buttonFourEl.addEventListener("click", function(){
+//         removing();
+//         fourthQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Correct!";
+//     });
+// }
+
+// var secondQuestion = function(){
+//     // //append question to the main html element
+//         buttonOneEl.removeEventListener("click", function(){
+//         removing();
+//         secondQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//         });
+
+//     buttonTwoEl.removeEventListener("click", function(){
+//         removing();
+//         secondQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
 
-    buttonFourEl.removeEventListener("click", function(){
-        removing();
-        secondQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     buttonThreeEl.removeEventListener("click", function(){
+//         removing();
+//         secondQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Correct!";
+//     });
 
-    appendingQuestions();
 
-    questionEl.textContent = "The condition in an if/else statement is enclosed with ______________.";
+//     buttonFourEl.removeEventListener("click", function(){
+//         removing();
+//         secondQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
+
+//     appendingQuestions();
+
+//     questionEl.textContent = "The condition in an if/else statement is enclosed with ______________.";
     
-    //append answers to the ol question element
-    appendingAnswers();
-    //creates text content for questions
+//     //append answers to the ol question element
+//     appendingAnswers();
+//     //creates text content for questions
 
-    //creates text content for answers
-    buttonOneEl.textContent = "quotes";
-    buttonTwoEl.textContent = "curly brackets";
-    buttonThreeEl.textContent = "parenthesis";
-    buttonFourEl.textContent = "square brackets";
+//     //creates text content for answers
+//     buttonOneEl.textContent = "quotes";
+//     buttonTwoEl.textContent = "curly brackets";
+//     buttonThreeEl.textContent = "parenthesis";
+//     buttonFourEl.textContent = "square brackets";
 
-    buttonOneEl.addEventListener("click", function(){
-        removing();
-        thirdQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     buttonOneEl.addEventListener("click", function(){
+//         removing();
+//         thirdQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
-    buttonTwoEl.addEventListener("click", function(){
-        removing();
-        thirdQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
-
-
-    buttonThreeEl.addEventListener("click", function(){
-        removing();
-        thirdQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Correct!";
-    });
+//     buttonTwoEl.addEventListener("click", function(){
+//         removing();
+//         thirdQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
 
-    buttonFourEl.addEventListener("click", function(){
-        removing();
-        thirdQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
-}
+//     buttonThreeEl.addEventListener("click", function(){
+//         removing();
+//         thirdQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Correct!";
+//     });
 
-var firstQuestion = function(){
-    //append question to the main html element
-    appendingQuestions();
 
-    questionEl.textContent = "Commonly used data types DO Not Include:";
+//     buttonFourEl.addEventListener("click", function(){
+//         removing();
+//         thirdQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
+// }
+
+// var firstQuestion = function(){
+//     //append question to the main html element
+//     appendingQuestions();
+
+//     questionEl.textContent = "Commonly used data types DO Not Include:";
     
-    //append answers to the ol question element
-    appendingAnswers();
-    //creates text content for questions
+//     //append answers to the ol question element
+//     appendingAnswers();
+//     //creates text content for questions
 
-    //creates text content for answers
-    buttonOneEl.textContent = "strings";
-    buttonTwoEl.textContent = "booleans";
-    buttonThreeEl.textContent = "alerts";
-    buttonFourEl.textContent = "numbers";
+//     //creates text content for answers
+//     buttonOneEl.textContent = "strings";
+//     buttonTwoEl.textContent = "booleans";
+//     buttonThreeEl.textContent = "alerts";
+//     buttonFourEl.textContent = "numbers";
 
-    buttonOneEl.addEventListener("click", function(){
-        removing();
-        secondQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
+//     buttonOneEl.addEventListener("click", function(){
+//         removing();
+//         secondQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
-    // buttonOneEl.removeEventListener("click", function(){
-    //     removing();
-    //     secondQuestion();
-    //     main.appendChild(confirmEl);
-    //     confirmEl.textContent = "Wrong!";
-    //     penalty();
-    // });
+//     // buttonOneEl.removeEventListener("click", function(){
+//     //     removing();
+//     //     secondQuestion();
+//     //     main.appendChild(confirmEl);
+//     //     confirmEl.textContent = "Wrong!";
+//     //     penalty();
+//     // });
 
-    buttonTwoEl.addEventListener("click", function(){
-        removing();
-        secondQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
-
-
-    buttonThreeEl.addEventListener("click", function(){
-        removing();
-        secondQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Correct!";
-    });
+//     buttonTwoEl.addEventListener("click", function(){
+//         removing();
+//         secondQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
 
 
-    buttonFourEl.addEventListener("click", function(){
-        removing();
-        secondQuestion();
-        main.appendChild(confirmEl);
-        confirmEl.textContent = "Wrong!";
-        penalty();
-    });
-}
+//     buttonThreeEl.addEventListener("click", function(){
+//         removing();
+//         secondQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Correct!";
+//     });
+
+
+//     buttonFourEl.addEventListener("click", function(){
+//         removing();
+//         secondQuestion();
+//         main.appendChild(confirmEl);
+//         confirmEl.textContent = "Wrong!";
+//         penalty();
+//     });
+// }
 
 
 
@@ -532,7 +648,7 @@ var setTimer = function(){
     //removes instructions
     buttonEl.remove();
     // calls first question
-    firstQuestion();
+    selectQuestion();
     //creates the countdown function which decreases count by one and reassigns count to that value
     var countdown = function(){
         // console.log(count);
