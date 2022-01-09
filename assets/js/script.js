@@ -1,6 +1,6 @@
 // sets variables
 var count = 75;
-var countSubtract = 15;
+var countSubtract = 10;
 
 // It calls on the ids in the HTML file
 var main = document.querySelector('#main');
@@ -84,13 +84,14 @@ buttonTwoEl.className = "new-btn";
 buttonThreeEl.className = "new-btn";
 buttonFourEl.className = "new-btn";
 
-//Creates Elements for savingScore function
+//Creates Elements for submitScore function
 var finalMessageEl = document.createElement("div");
 var finalEl = document.createElement("h1");
 var scoreMessageEl = document.createElement("p");
 var scoreContainerEl = document.createElement("div");
 var initialsLabelEl = document.createElement("label");
 var initialsInputEl = document.createElement("input");
+var highScorePageEl = document.createElement("a");
 var submitScoreEl = document.createElement("button");
 
 finalMessageEl.classname = "final-msg";
@@ -99,6 +100,7 @@ scoreMessageEl.className = "score-msg";
 scoreContainerEl.className = "score-container";
 initialsLabelEl.className = "init-label";
 initialsInputEl.className = "init-input";
+highScorePageEl.setAttribute("href", "./highscore.html");
 submitScoreEl.className = "submit-btn";
 
 //subtracts 15
@@ -182,8 +184,25 @@ var selectQuestion = function(){
     }
 }
 
-// saves the score
 var savingScore = function(){
+    submitScoreEl.addEventListener("click", function(){
+    localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
+    });
+
+}
+
+var loadScore = function(){
+    var savedScore = localStorage.getItem(initialsInputEl.value);
+
+    if(!savingScore){
+        return false;
+    }
+
+    savedScore = JSON.parse(savedScore);
+}
+
+// saves the score
+var submitScore = function(){
     main.appendChild(finalMessageEl);
     finalMessageEl.appendChild(finalEl);
     finalEl.textContent = "All done!";
@@ -193,8 +212,13 @@ var savingScore = function(){
     scoreContainerEl.appendChild(initialsLabelEl);
     initialsLabelEl.textContent = "Enter Initials: ";
     scoreContainerEl.appendChild(initialsInputEl);
+    scoreContainerEl.appendChild(highScorePageEl);
     submitScoreEl.textContent = "Submit";
-    scoreContainerEl.appendChild(submitScoreEl);
+    highScorePageEl.appendChild(submitScoreEl);
+
+    savingScore();
+
+    loadScore();
 }
 
 //creates the timer function and removes beginning title and instructions
@@ -213,9 +237,9 @@ var setTimer = function(){
         countEl.textContent = count;
         count--;
         //stops the timer when it reaches zero and shows alert message
-        if(count < 0){
+        if(count <= 0){
             clearInterval(myTimer);     
-            savingScore();
+            submitScore();
         } 
     }
     //runs the countdown function every 1000 ms or 1s
