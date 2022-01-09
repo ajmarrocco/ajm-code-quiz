@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* variables */
+:root {
+    --primary-color: purple;
+    --secondary-color: violet;
+    --tertiary-color: white;
+}
+
+body {
+    font-family: "Arial", Courier, monospace;
+}
+
+.head{
+    display: flex;
+    justify-content: space-between;
+}
+
+.view-high-scores{
+    text-decoration: none;
+    color: var(--secondary-color);
+
+}
+
+.view-high-scores, .timer-count{
+    margin: 20px;
+    font-size: 20px;
+    font-weight: lighter;
+}
+
+.mn{
+    text-align: center;
+    margin: 20px 0;
+}
+
+.title, .instruct, .bn{
+    margin: 20px;
+}
+
+.instruct{
+    width: 50%;
+    margin: auto;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.bn{
+    background-color: var(--primary-color);
+    color: var(--tertiary-color);
+    padding: 5px;
+    border-radius: 5px;
+}
