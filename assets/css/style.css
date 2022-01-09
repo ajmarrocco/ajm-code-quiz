@@ -9,6 +9,7 @@
     --primary-color: purple;
     --secondary-color: violet;
     --tertiary-color: white;
+    --quaternary-color: gray;
 }
 
 body {
@@ -41,16 +42,79 @@ body {
     margin: 20px;
 }
 
+
 .instruct{
     width: 50%;
     margin: auto;
     font-size: 16px;
-    font-weight: bold;
 }
 
-.bn{
+.bn, .new-btn, .submit-btn{
     background-color: var(--primary-color);
     color: var(--tertiary-color);
-    padding: 5px;
+    padding: 5px 10px;
     border-radius: 5px;
+}
+
+.divdiv{
+    text-align: center;
+}
+
+.quest{
+    font-weight: bold;
+    font-size: 26px;
+    width: 50%;
+    margin: 0px auto;
+    text-align: left;
+}
+
+.li-style{
+    list-style-type: none;
+}
+
+.new-btn{
+    position: relative;
+    right: 0px;
+    margin: 10px auto;
+    width: 150px;
+}
+
+.cnfm{
+    border-top: solid var(--quaternary-color) 1px;
+    width: 50%;
+    margin: 20px auto;
+    padding: 10px;
+    color: var(--quaternary-color);
+    text-align: left;
+    font-style: italic;
+}
+
+.final-msg{
+    text-align: center;
+}
+
+.all-done, .score-msg, .score-container{
+    text-align: left;
+    width: 50%;
+    margin: 5px auto;
+}
+
+input{
+    padding: 5px;
+}
+
+.init-input{
+    width: 70%;
+    margin: auto 10px auto 5px;
+}
+
+
+footer{
+    display: flex;
+    position: absolute;
+    bottom: 0px;
+    color:var(--tertiary-color);
+    background-color: var(--primary-color);
+    width: 100%;
+    padding: 20px;
 }

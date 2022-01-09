@@ -60,6 +60,9 @@ var confirmEl = document.createElement("div");
 var divEl = document.createElement("div");
 //create ordered list questions
 var questionEl = document.createElement("ol");
+confirmEl.className = "cnfm"
+divEl.className = "divdiv";
+questionEl.className = "quest";
 //create list item answers for questions
 var answerOneEl = document.createElement("li");
 var answerTwoEl = document.createElement("li");
@@ -71,12 +74,32 @@ var buttonTwoEl  = document.createElement("button");
 var buttonThreeEl = document.createElement("button");
 var buttonFourEl = document.createElement("button");
 
+answerOneEl.className = "li-style";
+answerTwoEl.className = "li-style";
+answerThreeEl.className = "li-style";
+answerFourEl.className = "li-style";
+
+buttonOneEl.className = "new-btn";
+buttonTwoEl.className = "new-btn";
+buttonThreeEl.className = "new-btn";
+buttonFourEl.className = "new-btn";
+
 //Creates Elements for savingScore function
+var finalMessageEl = document.createElement("div");
 var finalEl = document.createElement("h1");
 var scoreMessageEl = document.createElement("p");
+var scoreContainerEl = document.createElement("div");
 var initialsLabelEl = document.createElement("label");
 var initialsInputEl = document.createElement("input");
 var submitScoreEl = document.createElement("button");
+
+finalMessageEl.classname = "final-msg";
+finalEl.className = "all-done";
+scoreMessageEl.className = "score-msg";
+scoreContainerEl.className = "score-container";
+initialsLabelEl.className = "init-label";
+initialsInputEl.className = "init-input";
+submitScoreEl.className = "submit-btn";
 
 //subtracts 15
 var penalty = function(){ 
@@ -161,11 +184,17 @@ var selectQuestion = function(){
 
 // saves the score
 var savingScore = function(){
-    main.appendChild(initialsLabelEl);
+    main.appendChild(finalMessageEl);
+    finalMessageEl.appendChild(finalEl);
+    finalEl.textContent = "All done!";
+    finalMessageEl.appendChild(scoreMessageEl);
+    scoreMessageEl.textContent = "Your final score is " + count + ".";
+    main.appendChild(scoreContainerEl);
+    scoreContainerEl.appendChild(initialsLabelEl);
     initialsLabelEl.textContent = "Enter Initials: ";
-    main.appendChild(initialsInputEl);
-    main.appendChild(submitScoreEl);
+    scoreContainerEl.appendChild(initialsInputEl);
     submitScoreEl.textContent = "Submit";
+    scoreContainerEl.appendChild(submitScoreEl);
 }
 
 //creates the timer function and removes beginning title and instructions
