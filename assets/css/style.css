@@ -1,9 +1,9 @@
+/* universal */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 /* variables */
 :root {
     --primary-color: purple;
@@ -11,55 +11,54 @@
     --tertiary-color: white;
     --quaternary-color: gray;
 }
-
+/* font for body */
 body {
     font-family: "Arial", Courier, monospace;
 }
-
+/* flexes and spaces head */
 .head{
     display: flex;
     justify-content: space-between;
 }
-
+/* decorates view high score */
 .view-high-scores{
     text-decoration: none;
     color: var(--secondary-color);
 
 }
-
+/* styles timer count and high scores */
 .view-high-scores, .timer-count{
     margin: 20px;
     font-size: 20px;
     font-weight: lighter;
 }
-
+/* styles main */
 .mn{
     text-align: center;
     margin: 20px 0;
 }
-
+/* margins for title, instruct and bn */
 .title, .instruct, .bn{
     margin: 20px;
 }
-
-
+/* styles instructions */
 .instruct{
     width: 50%;
     margin: auto;
     font-size: 16px;
 }
-
+/* styles buttons */
 .bn, .new-btn, .submit-btn{
     background-color: var(--primary-color);
     color: var(--tertiary-color);
     padding: 5px 10px;
     border-radius: 5px;
 }
-
+/* centers div */
 .divdiv{
     text-align: center;
 }
-
+/* styles questions */
 .quest{
     font-weight: bold;
     font-size: 26px;
@@ -67,18 +66,18 @@ body {
     margin: 0px auto;
     text-align: left;
 }
-
+/* removes style from li */
 .li-style{
     list-style-type: none;
 }
-
+/* styles buttons for answers */
 .new-btn{
     position: relative;
     right: 0px;
     margin: 10px auto;
     width: 150px;
 }
-
+/* styles confirmation of answer */
 .cnfm{
     border-top: solid var(--quaternary-color) 1px;
     width: 50%;
@@ -88,27 +87,26 @@ body {
     text-align: left;
     font-style: italic;
 }
-
+/* centers final message */
 .final-msg{
     text-align: center;
 }
-
+/* aligns text and margins for the final message */
 .all-done, .score-msg, .score-container{
     text-align: left;
     width: 50%;
     margin: 5px auto;
 }
-
+/* padding for input box */
 input{
     padding: 5px;
 }
-
+/* styles the input box */
 .init-input{
     width: 70%;
     margin: auto 10px auto 5px;
 }
-
-
+/* styles footer */
 footer{
     display: flex;
     position: absolute;
@@ -117,4 +115,9 @@ footer{
     background-color: var(--primary-color);
     width: 100%;
     padding: 20px;
+}
+/* styles textarea */
+textarea {
+    resize: none;
+    background-color: var(--secondary-color);
 }

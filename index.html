@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- sets up HTML -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,23 +9,24 @@
     <link rel="icon" type="image/jpg" href = "./assets/images/favicon.png">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
+<!-- sets up body -->
 <body>
+    <!-- sets timer and high scores link -->
     <header class = "head">
-        <a href = '' class = view-high-scores>View high scores</a>
+        <a href = "./highscore.html" class = view-high-scores>View high scores</a>
         <h2 class ="timer-count">Time: <span id="count">0</span></h2>
     </header>
-
+    <!-- sets starting prompt -->
     <main class="mn" id="main">
         <h1 class="title" id="beginning">Coding Quiz Challenge</h1>
         <p class="instruct" id="instructions">Try to answer the following code-related questions within the time limit.  Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
         <button class="bn" id="btn">Start Quiz</button>
     </main>
-
+    <!-- footer message -->
     <footer>
         &copy;2022 by Anthony Marrocco
     </footer>
-
+    <!-- links js file -->
     <script src="./assets/js/script.js"></script>
 </body>
 

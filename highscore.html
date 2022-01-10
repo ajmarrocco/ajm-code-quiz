@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- sets up HTML -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,14 +9,27 @@
     <link rel="icon" type="image/jpg" href = "./assets/images/favicon.png">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-
-<body>
-
+<!-- sets up body -->
+<body>    
+    <!-- sets up high score page -->
+    <main class="mn" id="main">
+        <h1 class="title" id="beginning">High Scores</h1>
+        <textarea
+        readonly
+        id="score"
+        class="hs-box" 
+        placeholder=""
+        aria-label="Current High Score">
+        </textarea>
+        <a href="./index.html"><button class="bn" id="back-btn">Go back</button></a>
+        <button class="bn" id="clear-btn">Clear high scores</button>
+    </main>
+    <!-- footer message -->
     <footer>
         &copy;2022 by Anthony Marrocco
     </footer>
-
-    <!-- <script src="./assets/js/script.js"></script> -->
+    <!-- links js file -->
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
