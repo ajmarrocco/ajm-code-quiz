@@ -1,6 +1,7 @@
 // sets variables
 var count = 75;
 var countSubtract = 10;
+var qIndex = 0;
 
 // It calls on the ids in the HTML file
 var main = document.querySelector('#main');
@@ -14,42 +15,27 @@ var clearButtonEl = document.querySelector("#clear-btn");
 var questions = [
     {
         question:"Commonly used data types DO Not Include:",
-        answer1:"strings",
-        answer2:"booleans",
-        answer3:"alerts",
-        answer4:"numbers",
+        answers:["strings", "booleans","alerts","numbers"],
         correct:"alerts"
     },
     {
         question:"The condition in an if/else statement is enclosed with ______________.",
-        answer1:"quotes",
-        answer2:"curly brackets",
-        answer3:"parenthesis",
-        answer4:"square brackets",
+        answers:["quotes","curly brackets","parenthesis","square brackets"],
         correct:"parethesis"
     },
     {
         question:"Arrays in JavaScript can be used to store ______________.",
-        answer1:"numbers and strings",
-        answer2:"other arrays",
-        answer3:"booleans",
-        answer4:"all of the above",
+        answers:["numbers and strings","other arrays","booleans","all of the above"],
         correct:"all of the above"
     },
     {
         question:"String values must be enclosed within ______________ when being assigned to variables.",
-        answer1:"commas",
-        answer2:"curly brackets",
-        answer3:"quotes",
-        answer4:"parenthesis",
+        answers:["commas","curly brackets","quotes","parenthesis"],
         correct:"quotes"
     },
     {
         question:"A very useful tool used during development and debugging for printing content to the debugger is: ",
-        answer1:"JavaScript",
-        answer2:"terminal/bash",
-        answer3:"for loops",
-        answer4:"console.log",
+        answers:["JavaScript","terminal/bash","for loops","console.log"],
         correct:"console.log"
     }
 ];
@@ -64,26 +50,6 @@ var questionEl = document.createElement("ol");
 confirmEl.className = "cnfm";
 divEl.className = "divdiv";
 questionEl.className = "quest";
-//create list item answers for questions
-var answerOneEl = document.createElement("li");
-var answerTwoEl = document.createElement("li");
-var answerThreeEl = document.createElement("li");
-var answerFourEl = document.createElement("li");
-//create buttons for answers
-var buttonOneEl = document.createElement("button");
-var buttonTwoEl  = document.createElement("button");
-var buttonThreeEl = document.createElement("button");
-var buttonFourEl = document.createElement("button");
-//Class names for styling in CSS
-answerOneEl.className = "li-style";
-answerTwoEl.className = "li-style";
-answerThreeEl.className = "li-style";
-answerFourEl.className = "li-style";
-//Class names for styling in CSS
-buttonOneEl.className = "new-btn";
-buttonTwoEl.className = "new-btn";
-buttonThreeEl.className = "new-btn";
-buttonFourEl.className = "new-btn";
 //Creates Elements for submitScore function
 var finalMessageEl = document.createElement("div");
 var finalEl = document.createElement("h1");
@@ -140,8 +106,10 @@ var submitScore = function(){
     //creates elements to save score
     main.appendChild(finalMessageEl);
     finalMessageEl.appendChild(finalEl);
+    //shows all done message
     finalEl.textContent = "All done!";
     finalMessageEl.appendChild(scoreMessageEl);
+    //shows final cout
     scoreMessageEl.textContent = "Your final score is " + count + ".";
     main.appendChild(scoreContainerEl);
     scoreContainerEl.appendChild(initialsLabelEl);
@@ -157,85 +125,58 @@ var submitScore = function(){
 }
 
 //TO DO: Selects question
-var selectQuestion = function(){
+var selectQuestion = function(qIndex){
+    
     //loops through object array
     for (let i = 0; i < questions.length; i++){
+        //appends div and questions
         main.appendChild(divEl);
         divEl.appendChild(questionEl);
-        //appends the questions, buttons and answers
-        var appsQuestion = function(index){
-
-            questionEl.textContent = questions[index].question;
-
-
-            questionEl.appendChild(answerOneEl);
-            answerOneEl.appendChild(buttonOneEl);      
-            questionEl.appendChild(answerTwoEl);
-            answerTwoEl.appendChild(buttonTwoEl);
-            questionEl.appendChild(answerThreeEl);
-            answerThreeEl.appendChild(buttonThreeEl);      
-            questionEl.appendChild(answerFourEl);
-            answerFourEl.appendChild(buttonFourEl);
-
-            buttonOneEl.textContent = questions[index].answer1;
-            buttonTwoEl.textContent = questions[index].answer2;
-            buttonThreeEl.textContent = questions[index].answer3;
-            buttonFourEl.textContent = questions[index].answer4;
-            console.log(questionEl);
-            //runs if button 1 is clicked
-            buttonOneEl.addEventListener("click", function(){        
-                if (questions[index].answer1 === questions[index].correct){
-                    main.appendChild(confirmEl);
-                    confirmEl.textContent = "Correct!";
-                    penalty();
-                } else{
-                    main.appendChild(confirmEl);
-                    confirmEl.textContent = "Wrong!";
-                    penalty();
-                }
-            });
-            //runs if button 4 is clicked
-            buttonTwoEl.addEventListener("click", function(){        
-                if (questions[index].answer2 === questions[index].correct){
-                    main.appendChild(confirmEl);
-                    confirmEl.textContent = "Correct!";
-                    penalty();
-                } else{
-                    main.appendChild(confirmEl);
-                    confirmEl.textContent = "Wrong!";
-                    penalty();
-                }
-            });
-            //runs if button 3 is clicked
-            buttonThreeEl.addEventListener("click", function(){        
-                if (questions[index].answer3 === questions[index].correct){
-                    main.appendChild(confirmEl);
-                    confirmEl.textContent = "Correct!";
-                    penalty();
-                } else{
-                    main.appendChild(confirmEl);
-                    confirmEl.textContent = "Wrong!";
-                    penalty();
-                }
-            });
-            //runs if button 4 is clicked
-            buttonFourEl.addEventListener("click", function(){        
-                if (questions[index].answer4 === questions[index].correct){
-                    main.appendChild(confirmEl);
-                    confirmEl.textContent = "Correct!";
-                    penalty();
-                } else{
-                    main.appendChild(confirmEl);
-                    confirmEl.textContent = "Wrong!";
-                    penalty();
-                }
-            });
-        }   
-        appsQuestion(i);
+        //sets text of question with qIndex
+        questionEl.textContent = questions[qIndex].question;
+        //sets answers to variable
+        var options = questions[qIndex].answers;
+            //creates a list item and a button for every answers
+            for (let j = 0; j < options.length; j++){
+                //variables for answers and buttons
+                var optionsEl = document.createElement("li");
+                var answerBtnEl = document.createElement("button");
+                //sets text for button to each index j
+                answerBtnEl.textContent = options[j];
+                //appends answers and buttons
+                questionEl.appendChild(optionsEl);
+                optionsEl.appendChild(answerBtnEl);
+                //sets event listener
+                answerBtnEl.addEventListener("click",function(){
+                    if(options[j] === questions[qIndex].correct){
+                        //shows correct message and goes to next question
+                        main.appendChild(confirmEl);
+                        confirmEl.textContent = "Correct!";
+                        //goes to next number in index
+                        qIndex++;
+                        if (qIndex >= questions.length){
+                            //TO DO: wants to stop count
+                            submitScore();
+                        }
+                        selectQuestion(qIndex);
+                        //shows wrong message and goes to next question
+                        } else {
+                        main.appendChild(confirmEl);
+                        confirmEl.textContent = "Wrong!";
+                        //subtracts ten to score
+                        penalty();
+                        //goes to next number in index                        
+                        qIndex++;
+                        if (qIndex >= questions.length){
+                            //TO DO: wants to stop count
+                            submitScore();
+                        }
+                        selectQuestion(qIndex);
+                    }
+                })
+            }
     }   
-    //TO DO: runs submit score after fifth question
-    // submitScore(); 
-}
+}   
 
 
 //creates the timer function and removes beginning title and instructions
@@ -246,8 +187,6 @@ var setTimer = function(){
     instructionsEl.remove();
     //removes instructions
     buttonEl.remove();
-    // calls first question
-    selectQuestion();
     //creates the countdown function which decreases count by one and reassigns count to that value
     var countdown = function(){
         countEl.textContent = count;
@@ -256,12 +195,17 @@ var setTimer = function(){
         if(count <= 0){
             count = 0;
             countEl.textContent = 0;
-            clearInterval(myTimer);     
-            submitScore();
-        } 
+            clearInterval(myTimer);   
+            submitScore();  
+        } else if (qIndex >= questions.length){
+            clearInterval(myTimer);
+        }
     }
-    //runs the countdown function every 1000 ms or 1s
+    // //runs the countdown function every 1000 ms or 1s
     var myTimer = setInterval(countdown, 1000);  
+
+    // calls first question
+    selectQuestion(qIndex);
 }
 
 // Set the timer when you click the "Start Quiz" button
