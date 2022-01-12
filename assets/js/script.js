@@ -109,7 +109,7 @@ var penalty = function(){
 //TO DO: displays score to user
 var showScore = function(){
     var bestScore = savingScore();
-    var scoreText = document.querySelector("#score");
+    var scoreText = document.querySelector("#initials-score");
 
     scoreText.textContent = bestScore;   
 }
@@ -120,6 +120,7 @@ var savingScore = function(){
     });
 
     var savedScore = localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
+    console.log(savedScore);
 
     if(savedScore === null){
         savedScore = 0;
@@ -131,7 +132,7 @@ var savingScore = function(){
 
     console.log(savedScore);
 
-    return savedScore;
+    // return savedScore;
 }
 
 // submits the score
@@ -162,9 +163,10 @@ var selectQuestion = function(){
         main.appendChild(divEl);
         divEl.appendChild(questionEl);
         //appends the questions, buttons and answers
-        var appendsQuestion = function(index){
+        var appsQuestion = function(index){
 
             questionEl.textContent = questions[index].question;
+
 
             questionEl.appendChild(answerOneEl);
             answerOneEl.appendChild(buttonOneEl);      
@@ -179,7 +181,7 @@ var selectQuestion = function(){
             buttonTwoEl.textContent = questions[index].answer2;
             buttonThreeEl.textContent = questions[index].answer3;
             buttonFourEl.textContent = questions[index].answer4;
-            console.log(questions[index].answer4);
+            console.log(questionEl);
             //runs if button 1 is clicked
             buttonOneEl.addEventListener("click", function(){        
                 if (questions[index].answer1 === questions[index].correct){
@@ -229,12 +231,10 @@ var selectQuestion = function(){
                 }
             });
         }   
-    appendsQuestion(i);
+        appsQuestion(i);
     }   
     //TO DO: runs submit score after fifth question
-    if (questions.length === 4){
-        submitScore();
-    }    
+    // submitScore(); 
 }
 
 
@@ -270,6 +270,6 @@ buttonEl.addEventListener("click", function(){
 });
 
 // TO DO: clears storage
-clearButtonEl.addEventListener("click", function(){
-    localStorage.clear();
-});
+// clearButtonEl.addEventListener("click", function(){
+//     localStorage.clear();
+// });
