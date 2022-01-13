@@ -10,7 +10,6 @@ var countEl = document.querySelector('#count');
 var buttonEl = document.querySelector('#btn');
 var beginningEl = document.querySelector('#beginning');
 var instructionsEl = document.querySelector('#instructions');
-var clearButtonEl = document.querySelector("#clear-btn");
 
 //set array of objects
 var questions = [
@@ -73,12 +72,12 @@ var penalty = function(){
     count -= countSubtract;
 }
 //TO DO: displays score to user
-var showScore = function(){
-    var bestScore = savingScore();
-    var scoreText = document.querySelector("#initials-score");
+// var showScore = function(){
+//     var bestScore = savingScore();
+//     var scoreText = document.querySelector("#initials-score");
 
-    scoreText.textContent = bestScore;   
-}
+//     scoreText.textContent = bestScore;   
+// }
 //saves count to storage
 var savingScore = function(){
 
