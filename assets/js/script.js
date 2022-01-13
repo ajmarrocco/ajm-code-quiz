@@ -2,6 +2,7 @@
 var count = 75;
 var countSubtract = 10;
 var qIndex = 0;
+var myTimer = 0;
 
 // It calls on the ids in the HTML file
 var main = document.querySelector('#main');
@@ -70,7 +71,7 @@ highScorePageEl.setAttribute("href", "./highscore.html");
 submitScoreEl.className = "submit-btn";
 //subtracts 10
 var penalty = function(){ 
-    this.count -= countSubtract;
+    count -= countSubtract;
 }
 //TO DO: displays score to user
 var showScore = function(){
@@ -103,6 +104,10 @@ var savingScore = function(){
 
 // submits the score
 var submitScore = function(){
+    //clears timer
+    clearInterval(myTimer);
+    //sets countEl to the final value of count
+    countEl.textContent = count;
     //creates elements to save score
     main.appendChild(finalMessageEl);
     finalMessageEl.appendChild(finalEl);
@@ -161,10 +166,11 @@ var selectQuestion = function(qIndex){
                         selectQuestion(qIndex);
                         //shows wrong message and goes to next question
                         } else {
+                        penalty();
                         main.appendChild(confirmEl);
                         confirmEl.textContent = "Wrong!";
                         //subtracts ten to score
-                        penalty();
+                        
                         //goes to next number in index                        
                         qIndex++;
                         if (qIndex >= questions.length){
@@ -202,7 +208,7 @@ var setTimer = function(){
         }
     }
     // //runs the countdown function every 1000 ms or 1s
-    var myTimer = setInterval(countdown, 1000);  
+    myTimer = setInterval(countdown, 1000);  
 
     // calls first question
     selectQuestion(qIndex);
