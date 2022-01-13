@@ -48,7 +48,6 @@ var divEl = document.createElement("div");
 //create ordered list questions
 var questionEl = document.createElement("ol");
 //Class names for styling in CSS
-confirmEl.className = "cnfm";
 divEl.className = "divdiv";
 questionEl.className = "quest";
 //Creates Elements for submitScore function
@@ -82,30 +81,25 @@ var showScore = function(){
 }
 //saves count to storage
 var savingScore = function(){
+
     submitScoreEl.addEventListener("click", function(){
-    localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
+        localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
     });
 
-    var savedScore = localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
-    console.log(savedScore);
+    // var savedScore = localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
 
-    if(savedScore === null){
-        savedScore = 0;
-    }
-
-    if(this.count > count){
-        localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
-    }
-
-    console.log(savedScore);
-
-    // return savedScore;
+    // if(this.count > count){
+    //     localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
+    // }
 }
+    // return savedScore;
+
 
 // submits the score
 var submitScore = function(){
     //clears timer
     clearInterval(myTimer);
+    questionEl.remove();
     //sets countEl to the final value of count
     countEl.textContent = count;
     //creates elements to save score
@@ -123,6 +117,7 @@ var submitScore = function(){
     scoreContainerEl.appendChild(highScorePageEl);
     submitScoreEl.textContent = "Submit";
     highScorePageEl.appendChild(submitScoreEl);
+    main.appendChild(confirmEl);
     //runs saves score
     savingScore();
     // runs display score
@@ -151,12 +146,13 @@ var selectQuestion = function(qIndex){
                 //appends answers and buttons
                 questionEl.appendChild(optionsEl);
                 optionsEl.appendChild(answerBtnEl);
+                main.appendChild(confirmEl);
                 //sets event listener
                 answerBtnEl.addEventListener("click",function(){
                     if(options[j] === questions[qIndex].correct){
                         //shows correct message and goes to next question
-                        main.appendChild(confirmEl);
                         confirmEl.textContent = "Correct!";
+                        confirmEl.className = "cnfm";
                         //goes to next number in index
                         qIndex++;
                         if (qIndex >= questions.length){
@@ -167,8 +163,8 @@ var selectQuestion = function(qIndex){
                         //shows wrong message and goes to next question
                         } else {
                         penalty();
-                        main.appendChild(confirmEl);
                         confirmEl.textContent = "Wrong!";
+                        confirmEl.className = "cnfm";
                         //subtracts ten to score
                         
                         //goes to next number in index                        
@@ -218,8 +214,3 @@ var setTimer = function(){
 buttonEl.addEventListener("click", function(){
     setTimer();
 });
-
-// TO DO: clears storage
-// clearButtonEl.addEventListener("click", function(){
-//     localStorage.clear();
-// });
