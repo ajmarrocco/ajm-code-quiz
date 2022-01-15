@@ -1,6 +1,6 @@
 // sets variables
-var count = 75;
-var countSubtract = 9;
+var count = 76;//count is 76 because it subtracts 1 second before displaying to user
+var countSubtract = 10;
 var qIndex = 0;
 var myTimer = 0;
 
@@ -56,7 +56,7 @@ var scoreMessageEl = document.createElement("p");
 var scoreContainerEl = document.createElement("div");
 var initialsLabelEl = document.createElement("label");
 var initialsInputEl = document.createElement("input");
-var highScorePageEl = document.createElement("a");
+// var highScorePageEl = document.createElement("a");
 var submitScoreEl = document.createElement("button");
 //Classes Elements for submitScore function
 finalMessageEl.classname = "final-msg";
@@ -65,21 +65,37 @@ scoreMessageEl.className = "score-msg";
 scoreContainerEl.className = "score-container";
 initialsLabelEl.className = "init-label";
 initialsInputEl.className = "init-input";
-//sets attribute href to highscore.html to a
-highScorePageEl.setAttribute("href", "./highscore.html");
 submitScoreEl.className = "submit-btn";
 
-//subtracts 9 plus an extra 1 that is subtracted by delay of setInterval()
+//subtracts 10
 var penalty = function(){ 
     count -= countSubtract;
+}
+
+//sets up alert if no initials are entered
+var alertMessage = function(){
+    window.alert("Please enter initials!")
 }
 
 //saves score and links to high score page via a parent element to submit button 
 var savingScore = function(){
     //event listener for click of submit button and stores key and value to storage
     submitScoreEl.addEventListener("click", function(){
-        localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
+        if(initialsInputEl.value == ""){
+            alertMessage();
+        } else{
+            localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
+            window.location.replace("./highscore.html");
+        }
     });
+}
+
+//avoid negative numbers
+var negNum = function(){
+    if (count < 0){
+        count = 0;
+        countEl.textContent = 0;
+    }
 }
 
 // submits the score
@@ -89,10 +105,6 @@ var submitScore = function(){
     questionEl.remove();
     //sets countEl to the final value of count
     countEl.textContent = count;
-    if (count < 0){
-        count = 0;
-        countEl.textContent = 0;
-    }
     //creates elements to save score
     main.appendChild(finalMessageEl);
     finalMessageEl.appendChild(finalEl);
@@ -105,9 +117,9 @@ var submitScore = function(){
     scoreContainerEl.appendChild(initialsLabelEl);
     initialsLabelEl.textContent = "Enter Initials: ";
     scoreContainerEl.appendChild(initialsInputEl);
-    scoreContainerEl.appendChild(highScorePageEl);
+    // scoreContainerEl.appendChild(highScorePageEl);
     submitScoreEl.textContent = "Submit";
-    highScorePageEl.appendChild(submitScoreEl);
+    scoreContainerEl.appendChild(submitScoreEl);
     main.appendChild(confirmEl);
     //runs saves score
     savingScore();
@@ -158,12 +170,13 @@ var selectQuestion = function(qIndex){
                         }
                         //shows wrong message and goes to next question
                     } else {
-                        //subtracts 9 plus an extra 1 that is subtracted by delay of setInterval()
+                        //subtracts 10
                         penalty();
                         confirmEl.textContent = "Wrong!";
                         confirmEl.className = "cnfm";
                         //goes to next number in index
-                        countEl.textContent = count;                        
+                        countEl.textContent = count;    
+                        negNum();                    
                         qIndex++;
                         if (qIndex >= questions.length){
                             //Goes to finished quiz
