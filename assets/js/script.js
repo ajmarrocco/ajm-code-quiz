@@ -65,6 +65,7 @@ scoreMessageEl.className = "score-msg";
 scoreContainerEl.className = "score-container";
 initialsLabelEl.className = "init-label";
 initialsInputEl.className = "init-input";
+//sets attribute href to highscore.html to a
 highScorePageEl.setAttribute("href", "./highscore.html");
 submitScoreEl.className = "submit-btn";
 
@@ -73,13 +74,12 @@ var penalty = function(){
     count -= countSubtract;
 }
 
+//saves score and links to high score page via a parent element to submit button 
 var savingScore = function(){
-
+    //event listener for click of submit button and stores key and value to storage
     submitScoreEl.addEventListener("click", function(){
         localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
     });
-
-
 }
 
 // submits the score
@@ -95,7 +95,7 @@ var submitScore = function(){
     //shows all done message
     finalEl.textContent = "All done!";
     finalMessageEl.appendChild(scoreMessageEl);
-    //shows final cout
+    //shows final count
     scoreMessageEl.textContent = "Your final score is " + count + ".";
     main.appendChild(scoreContainerEl);
     scoreContainerEl.appendChild(initialsLabelEl);
@@ -109,7 +109,7 @@ var submitScore = function(){
     savingScore();
 }
 
-//TO DO: Selects question
+//Selects question
 var selectQuestion = function(qIndex){
     
     //loops through object array
@@ -144,7 +144,7 @@ var selectQuestion = function(qIndex){
                         //goes to next number in index
                         qIndex++;
                         if (qIndex >= questions.length){
-                            //TO DO: wants to stop count
+                            //Goes to finished quiz
                             submitScore();
                         }
                         if (qIndex >= questions.length){
@@ -154,15 +154,15 @@ var selectQuestion = function(qIndex){
                         }
                         //shows wrong message and goes to next question
                     } else {
+                        //subtracts 9 plus an extra 1 that is subtracted by delay of setInterval()
                         penalty();
                         confirmEl.textContent = "Wrong!";
                         confirmEl.className = "cnfm";
-                        //subtracts ten to score
                         //goes to next number in index
                         countEl.textContent = count;                        
                         qIndex++;
                         if (qIndex >= questions.length){
-                            //TO DO: wants to stop count
+                            //Goes to finished quiz
                             submitScore();
                         }
                         if (qIndex >= questions.length){
