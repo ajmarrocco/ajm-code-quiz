@@ -9,7 +9,7 @@
     --primary-color: purple;
     --secondary-color: violet;
     --tertiary-color: white;
-    --quaternary-color: gray;
+    --quaternary-color: rgb(39, 39, 39);
 }
 /* font for body */
 body {
