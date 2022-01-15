@@ -89,6 +89,10 @@ var submitScore = function(){
     questionEl.remove();
     //sets countEl to the final value of count
     countEl.textContent = count;
+    if (count < 0){
+        count = 0;
+        countEl.textContent = 0;
+    }
     //creates elements to save score
     main.appendChild(finalMessageEl);
     finalMessageEl.appendChild(finalEl);
@@ -187,13 +191,13 @@ var setTimer = function(){
     buttonEl.remove();
     //creates the countdown function which decreases count by one and reassigns count to that value
     var countdown = function(){
-        countEl.textContent = count;
         count--;
+        countEl.textContent = count;
         //stops the timer when it reaches zero or below zero and shows save message
         if(count <= 0){
             count = 0;
             countEl.textContent = 0;
-            clearInterval(myTimer);   
+            clearInterval(myTimer);
             submitScore();  
         } else if (qIndex >= questions.length){
             clearInterval(myTimer);

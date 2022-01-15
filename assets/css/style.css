@@ -128,14 +128,13 @@ textarea {
 
 .order{
     text-align: center;
-    width: 50%;
 }
 
 .score-list-item{
-    text-align: left;
-    margin-left: 80%;
+    text-align: center;
+    width: 25%;
+    margin: 0px auto 5px auto;
     list-style: none;
     background-color: var(--secondary-color);
     padding: 5px;
-    margin-bottom: 5px;
 }
