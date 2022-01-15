@@ -1,6 +1,6 @@
 // sets variables
 var count = 75;
-var countSubtract = 10;
+var countSubtract = 9;
 var qIndex = 0;
 var myTimer = 0;
 
@@ -20,8 +20,8 @@ var questions = [
     },
     {
         question:"The condition in an if/else statement is enclosed with ______________.",
-        answers:["quotes","curly brackets","parenthesis","square brackets"],
-        correct:"parethesis"
+        answers:["quotes","curly brackets","parentheses","square brackets"],
+        correct:"parentheses"
     },
     {
         question:"Arrays in JavaScript can be used to store ______________.",
@@ -67,32 +67,20 @@ initialsLabelEl.className = "init-label";
 initialsInputEl.className = "init-input";
 highScorePageEl.setAttribute("href", "./highscore.html");
 submitScoreEl.className = "submit-btn";
-//subtracts 10
+
+//subtracts 9 plus an extra 1 that is subtracted by delay of setInterval()
 var penalty = function(){ 
     count -= countSubtract;
 }
-//TO DO: displays score to user
-// var showScore = function(){
-//     var bestScore = savingScore();
-//     var scoreText = document.querySelector("#initials-score");
 
-//     scoreText.textContent = bestScore;   
-// }
-//saves count to storage
 var savingScore = function(){
 
     submitScoreEl.addEventListener("click", function(){
         localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
     });
 
-    // var savedScore = localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
 
-    // if(this.count > count){
-    //     localStorage.setItem(initialsInputEl.value, JSON.stringify(count));
-    // }
 }
-    // return savedScore;
-
 
 // submits the score
 var submitScore = function(){
@@ -119,8 +107,6 @@ var submitScore = function(){
     main.appendChild(confirmEl);
     //runs saves score
     savingScore();
-    // runs display score
-    showScore();
 }
 
 //TO DO: Selects question
@@ -140,6 +126,8 @@ var selectQuestion = function(qIndex){
                 //variables for answers and buttons
                 var optionsEl = document.createElement("li");
                 var answerBtnEl = document.createElement("button");
+                optionsEl.className = "li-style";
+                answerBtnEl.className = "new-btn";
                 //sets text for button to each index j
                 answerBtnEl.textContent = options[j];
                 //appends answers and buttons
@@ -152,27 +140,36 @@ var selectQuestion = function(qIndex){
                         //shows correct message and goes to next question
                         confirmEl.textContent = "Correct!";
                         confirmEl.className = "cnfm";
+                        countEl.textContent = count;
                         //goes to next number in index
                         qIndex++;
                         if (qIndex >= questions.length){
                             //TO DO: wants to stop count
                             submitScore();
                         }
+                        if (qIndex >= questions.length){
+                            return;
+                        } else{
                         selectQuestion(qIndex);
+                        }
                         //shows wrong message and goes to next question
-                        } else {
+                    } else {
                         penalty();
                         confirmEl.textContent = "Wrong!";
                         confirmEl.className = "cnfm";
                         //subtracts ten to score
-                        
-                        //goes to next number in index                        
+                        //goes to next number in index
+                        countEl.textContent = count;                        
                         qIndex++;
                         if (qIndex >= questions.length){
                             //TO DO: wants to stop count
                             submitScore();
                         }
+                        if (qIndex >= questions.length){
+                            return;
+                        } else{
                         selectQuestion(qIndex);
+                        }
                     }
                 })
             }

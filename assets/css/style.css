@@ -54,6 +54,16 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
 }
+
+.bn:hover, .new-btn:hover, .submit-btn:hover{
+    background-color: var(--secondary-color);
+}
+
+.submit-btn[disabled]:hover{
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
 /* centers div */
 .divdiv{
     text-align: center;
@@ -120,4 +130,18 @@ footer{
 textarea {
     resize: none;
     background-color: var(--secondary-color);
+}
+
+.order{
+    text-align: center;
+    width: 50%;
+}
+
+.score-list-item{
+    text-align: left;
+    margin-left: 80%;
+    list-style: none;
+    background-color: var(--secondary-color);
+    padding: 5px;
+    margin-bottom: 5px;
 }
